@@ -1,6 +1,6 @@
 package com.austindorsey.d20.model
 
-data class Dice (val values: MutableList<String>) {
+data class Dice (val values: List<String>) {
     val sides: Int
         get() = values.size
 
@@ -8,8 +8,8 @@ data class Dice (val values: MutableList<String>) {
         return values.random()
     }
 
-    fun manyRolls(rollTimes: Int): MutableList<String> {
-        var rolls = mutableListOf<String>()
+    fun manyRolls(rollTimes: Int): List<String> {
+        val rolls = mutableListOf<String>()
         for (i in 1..rollTimes) {
             rolls.add(roll())
         }
