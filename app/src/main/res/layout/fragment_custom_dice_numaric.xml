@@ -48,34 +48,24 @@
                 app:layout_constraintStart_toStartOf="@+id/min"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-            <EditText
-                android:id="@+id/numDice"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/number_of_dice"
-                android:inputType="number"
-                app:layout_constraintBaseline_toBaselineOf="@+id/multiple"
-                app:layout_constraintEnd_toEndOf="@+id/max"
-                app:layout_constraintStart_toStartOf="@+id/max" />
-
             <CheckBox
                 android:id="@+id/evens"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:checked="true"
                 android:text="@string/evens"
-                app:layout_constraintStart_toStartOf="@+id/multiple"
-                app:layout_constraintTop_toBottomOf="@+id/multiple" />
+                app:layout_constraintEnd_toEndOf="@+id/max"
+                app:layout_constraintTop_toBottomOf="@+id/max" />
 
             <CheckBox
                 android:id="@+id/odds"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:checked="true"
                 android:text="@string/odds"
+                app:layout_constraintEnd_toEndOf="@+id/evens"
                 app:layout_constraintStart_toStartOf="@+id/evens"
                 app:layout_constraintTop_toBottomOf="@+id/evens" />
 
@@ -109,15 +99,6 @@
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/min" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/number_of_dice"
-                android:textSize="18sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView5"
-                app:layout_constraintStart_toStartOf="@+id/max" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
