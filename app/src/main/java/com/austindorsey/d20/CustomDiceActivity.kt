@@ -1,5 +1,7 @@
 package com.austindorsey.d20
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
@@ -25,5 +27,21 @@ class CustomDiceActivity : AppCompatActivity() {
         val veiwPager = binding.viewPager
         tabLayout.setupWithViewPager(viewPager)
         veiwPager.adapter = TabAdapter(supportFragmentManager, tabs)
+    }
+
+    override fun onBackPressed() {
+        sendResults()
+        super.onBackPressed()
+    }
+
+    /**
+     * Gets the custom die and sends it to the main activity to be rolled.
+     */
+    private fun sendResults() {
+        val intent = Intent()
+        val temp = listOf<String>("Dog","Cat","Duck").toTypedArray()
+        intent.putExtra("customDice", temp)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
 }

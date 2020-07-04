@@ -1,5 +1,6 @@
 package com.austindorsey.d20
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -48,6 +49,18 @@ class MainActivity : AppCompatActivity() {
     private fun startCustomDiceActivity() {
         val intent = Intent(this, CustomDiceActivity::class.java)
         startActivityForResult(intent, CUSTOM_LIST_REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == CUSTOM_LIST_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
+            //Get custom die from result
+            val customDice = Dice(data.getStringArrayExtra("customDice").asList())
+            index = dice.size - 1
+            dice[index] = customDice
+            updateDisplayedDie()
+        }
     }
 
     /**
