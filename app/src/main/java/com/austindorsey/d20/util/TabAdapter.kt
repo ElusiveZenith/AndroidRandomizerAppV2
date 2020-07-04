@@ -8,11 +8,7 @@ import com.austindorsey.d20.model.Tab
 class TabAdapter(fm: FragmentManager, private var tabs: List<Tab>) : FragmentStatePagerAdapter(fm, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment {
-        if (position < tabs.size) {
-            return tabs[position].fragment
-        } else {
-            return Fragment()
-        }
+        return if (position < tabs.size) tabs[position].fragment else Fragment()
     }
 
     override fun getPageTitle(position: Int): CharSequence {

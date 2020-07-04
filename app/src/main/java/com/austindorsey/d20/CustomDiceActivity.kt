@@ -5,10 +5,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentStatePagerAdapter
 import com.austindorsey.d20.databinding.ActivityCustomDiceBinding
 import com.austindorsey.d20.fragments.CustomDiceNumaricFragment
 import com.austindorsey.d20.fragments.CustomDiceStringFragment
 import com.austindorsey.d20.model.Tab
+import com.austindorsey.d20.model.CustomListCreator
 import com.austindorsey.d20.util.TabAdapter
 import kotlinx.android.synthetic.main.activity_custom_dice.*
 
@@ -39,8 +41,11 @@ class CustomDiceActivity : AppCompatActivity() {
      */
     private fun sendResults() {
         val intent = Intent()
-        val temp = listOf<String>("Dog","Cat","Duck").toTypedArray()
-        intent.putExtra("customDice", temp)
+        val currentIndex = binding.viewPager.currentItem
+        val adapter = binding.viewPager.adapter as FragmentStatePagerAdapter
+        val item = adapter.getItem(currentIndex) as CustomListCreator
+        val dieList = item.buildDieList().toTypedArray()
+        intent.putExtra("customDice", dieList)
         setResult(Activity.RESULT_OK, intent)
         finish()
     }
