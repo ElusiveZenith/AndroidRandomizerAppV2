@@ -34,7 +34,7 @@ class CustomDiceActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        var pref = getSharedPreferences("CustomDiceStringFragmentPreferences", Context.MODE_PRIVATE)
+        val pref = getSharedPreferences("CustomDiceStringFragmentPreferences", Context.MODE_PRIVATE)
         if (pref != null) {
             val tab = pref.getInt("CustomDiceStringFragment.tab", 0)
             viewPager.currentItem = tab

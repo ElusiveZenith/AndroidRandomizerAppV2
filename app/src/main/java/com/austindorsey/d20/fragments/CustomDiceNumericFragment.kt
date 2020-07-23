@@ -24,7 +24,7 @@ class CustomDiceNumericFragment : Fragment(),
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_custom_dice_numeric, container, false)
         val view = binding.root
 
-        var pref = activity?.getSharedPreferences("CustomDiceNumericFragmentPreferences", Context.MODE_PRIVATE)
+        val pref = activity?.getSharedPreferences("CustomDiceNumericFragmentPreferences", Context.MODE_PRIVATE)
         if (pref != null) {
             binding.min.setText(pref.getInt("min", 1).toString())
             binding.max.setText(pref.getInt("max", 20).toString())
@@ -67,8 +67,8 @@ class CustomDiceNumericFragment : Fragment(),
 
     override fun onStop() {
         super.onStop()
-        var pref = activity?.getSharedPreferences("CustomDiceNumericFragmentPreferences", Context.MODE_PRIVATE)
-        var editor = pref?.edit()
+        val pref = activity?.getSharedPreferences("CustomDiceNumericFragmentPreferences", Context.MODE_PRIVATE)
+        val editor = pref?.edit()
         if (editor != null) {
             editor.putInt("min", try {binding.min.text.toString().toInt()} catch (e: NumberFormatException) {1})
             editor.putInt("max", try {binding.max.text.toString().toInt()} catch (e: NumberFormatException) {20})

@@ -28,7 +28,7 @@ class CustomDiceStringFragment : Fragment(),
         binding.addListItem.setOnClickListener() { adapter.addItem() }
         binding.list.adapter = adapter
 
-        var pref = activity?.getSharedPreferences("CustomDiceStringFragmentPreferences", Context.MODE_PRIVATE)
+        val pref = activity?.getSharedPreferences("CustomDiceStringFragmentPreferences", Context.MODE_PRIVATE)
         if (pref != null) {
             val gson = Gson()
             val dataString = pref.getString("CustomDiceStringFragment.data", "[]")
@@ -50,8 +50,8 @@ class CustomDiceStringFragment : Fragment(),
 
     override fun onStop() {
         super.onStop()
-        var pref = activity?.getSharedPreferences("CustomDiceStringFragmentPreferences", Context.MODE_PRIVATE)
-        var editor = pref?.edit()
+        val pref = activity?.getSharedPreferences("CustomDiceStringFragmentPreferences", Context.MODE_PRIVATE)
+        val editor = pref?.edit()
         if (editor != null) {
             val gson = Gson()
             val json = gson.toJson(adapter.data)

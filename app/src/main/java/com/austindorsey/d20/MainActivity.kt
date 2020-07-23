@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-        var pref = getSharedPreferences("MainActivityPreferences", Context.MODE_PRIVATE)
-        var editor = pref?.edit()
+        val pref = getSharedPreferences("MainActivityPreferences", Context.MODE_PRIVATE)
+        val editor = pref?.edit()
         if (editor != null) {
             val gson = Gson()
             val json = gson.toJson(dice[dice.size-1].values)
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         }
         index = list.size - 1 //Sets index to last numeric die which is the d20
 
-        var pref = getSharedPreferences("MainActivityPreferences", Context.MODE_PRIVATE)
+        val pref = getSharedPreferences("MainActivityPreferences", Context.MODE_PRIVATE)
         if (pref != null) {
             //Gets any custom die created in the last session and adds it to the initial list.
             val gson = Gson()
