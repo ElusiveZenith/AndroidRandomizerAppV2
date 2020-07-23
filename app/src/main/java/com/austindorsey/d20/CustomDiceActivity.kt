@@ -1,13 +1,14 @@
 package com.austindorsey.d20
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.austindorsey.d20.databinding.ActivityCustomDiceBinding
-import com.austindorsey.d20.fragments.CustomDiceNumaricFragment
+import com.austindorsey.d20.fragments.CustomDiceNumericFragment
 import com.austindorsey.d20.fragments.CustomDiceStringFragment
 import com.austindorsey.d20.model.Tab
 import com.austindorsey.d20.model.CustomListCreator
@@ -17,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_custom_dice.*
 class CustomDiceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCustomDiceBinding
     private val tabs = listOf<Tab>(
-        Tab("Numeric", CustomDiceNumaricFragment()),
+        Tab("Numeric", CustomDiceNumericFragment()),
         Tab("List", CustomDiceStringFragment())
     )
 
@@ -29,6 +30,25 @@ class CustomDiceActivity : AppCompatActivity() {
         val veiwPager = binding.viewPager
         tabLayout.setupWithViewPager(viewPager)
         veiwPager.adapter = TabAdapter(supportFragmentManager, tabs)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        var pref = getSharedPreferences("CustomDiceStringFragmentPreferences", Context.MODE_PRIVATE)
+        if (pref != null) {
+            val tab = pref.getInt("CustomDiceStringFragment.tab", 0)
+            viewPager.currentItem = tab
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        val pref = getSharedPreferences("CustomDiceStringFragmentPreferences", Context.MODE_PRIVATE)
+        val editor = pref?.edit()
+        if (editor != null) {
+            editor.putInt("CustomDiceStringFragment.tab", viewPager.currentItem)
+            editor.apply()
+        }
     }
 
     override fun onBackPressed() {
